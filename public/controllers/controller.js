@@ -5,37 +5,39 @@ var myApp = angular.module('myApp',[]);
 	console.log("Hello World from controller");
 
 	var refresh = function(){
-		$http.get('/contactlist').success(function(response){
+		$http.get('/Resume').success(function(response){
 			console.log("Got data!");
-			$scope.contactlist = response;
+			$scope.Resume = response;
 		});
 	};
 	refresh();
 
 	$scope.addContact = function(){
-		 $http.post('/contactlist',$scope.contact).success(function(response){
+		 $http.post('/Resume',$scope.contact).success(function(response){
 		 	 console.log(response);
 			 refresh();
 		  });
 	};
 
+
 	$scope.remove = function(id){
 		console.log(id);
-		$http.delete('/contactlist/' + id).success(function(response){
+		$http.delete('/Resume/' + id).success(function(response){
 		refresh();
 	  });
  };
 
+
  $scope.edit = function(id){
 	 console.log(id);
-	 $http.get('/contactlist/' + id).success(function(response){
+	 $http.get('/Resume/' + id).success(function(response){
 		 $scope.contact = response;
 	 });
  };
 
  $scope.update = function(){
 	 console.log($scope.contact._id);
-	 $http.put('/contactlist/' + $scope.contact._id, $scope.contact).success(function(response){
+	 $http.put('/Resume/' + $scope.contact._id, $scope.contact).success(function(response){
 		 refresh();
 	 });
  };
